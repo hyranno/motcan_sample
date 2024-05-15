@@ -1,0 +1,17 @@
+{
+	"name": "motcan_sample",
+	"dockerComposeFile": "compose.yml",
+	"features": {
+		"ghcr.io/devcontainers/features/git": {},
+		"ghcr.io/devcontainers/features/node": {}
+	},
+    "service": "app",
+    "workspaceFolder": "/workspace",
+	"overrideCommand": true,
+	"customizations": {
+		"vscode": {
+			"extensions": [
+			]
+		}
+	}
+}
