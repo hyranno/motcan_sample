@@ -1,5 +1,5 @@
 import {Circle, makeScene2D} from '@motion-canvas/2d';
-import {createRef, useDuration, waitUntil} from '@motion-canvas/core';
+import {ThreadGenerator, all, createRef, useDuration, waitFor, waitUntil} from '@motion-canvas/core';
 
 export default makeScene2D(function* (view) {
   // Create your animations here
@@ -10,4 +10,17 @@ export default makeScene2D(function* (view) {
 
   yield* circle().scale(2, useDuration('event0')).to(1, 2);
   yield* waitUntil('event1');
+  yield* all(
+    generator(circle()),
+    waitGenerator(),
+  );
 });
+
+
+function* generator(circle: Circle): ThreadGenerator {
+  yield* circle.scale(2, 2).to(1, 2);
+}
+
+function* waitGenerator(): ThreadGenerator {
+  yield* waitFor(6);
+}
